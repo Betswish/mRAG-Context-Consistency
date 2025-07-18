@@ -10,7 +10,7 @@ from tqdm import tqdm
 import numpy as np
 
 import cohere
-YOUR_COHERE_API_KEY = "UEoQkQsY8YrlyQaq4HtpCzNZwqgCI58y92sxRdqz"
+YOUR_COHERE_API_KEY = "YOUR_KEY"
 co = cohere.Client(YOUR_COHERE_API_KEY) # Add your cohere API key from www.cohere.com
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
