@@ -1,4 +1,7 @@
-# On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation
+# (Work in progress) On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation
 
 ## Quick Start
-The results in the paper can be easily accessed via the bash scripts from 0\_embed\_MKQA.sh to 12\_count\_mirage\_multi.sh.
+
+You can reproduce the paper’s results using the bash scripts `0_embed_MKQA.sh` through `12_count_mirage_multi.sh`.
+
+We are refining this repository and expect to complete the updates by the end of November 2025.
