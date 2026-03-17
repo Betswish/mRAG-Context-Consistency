@@ -2,6 +2,4 @@
 
 ## Quick Start
 
-You can reproduce the paper’s results using the bash scripts `0_embed_MKQA.sh` through `12_count_mirage_multi.sh`.
-
-We are refining this repository and expect to complete the updates by the end of November 2025.
+All codes and scripts are contained in this repository. You can reproduce the paper’s results using the bash scripts from `0_embed_MKQA.sh` to `12_count_mirage_multi.sh`.
