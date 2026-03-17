@@ -1,12 +1,16 @@
 # On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation
 
-Official code and data for the paper **On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation**.
+<div align="center">
 
 **Authors:** Jirui Qi, Raquel Fernández, Arianna Bisazza
+[Jirui Qi](https://betswish.github.io/) • [Raquel Fernández](https://staff.fnwi.uva.nl/r.fernandezrovira/) • [[Arianna Bisazza](https://www.cs.rug.nl/~bisazza/)  
 
-- Paper: https://aclanthology.org/2025.mrl-main.15/
-- PDF: https://aclanthology.org/2025.mrl-main.15.pdf
-- Repository: https://github.com/Betswish/mRAG-Context-Consistency
+
+</div>
+
+> [!Note]
+> Our paper won the Best Paper Award at the [MRL 2025 workshop](https://sigtyp.github.io/ws2025-mrl.html)! 🎉
+
 
 ## Overview
 
