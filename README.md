@@ -1,4 +1,4 @@
-# (Work in progress) On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation
+# On the Consistency of Multilingual Context Utilization in Retrieval-Augmented Generation
 
 ## Quick Start
 
