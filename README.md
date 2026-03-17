@@ -84,76 +84,95 @@ For MKQA and GMMLU, passages are retrieved from multilingual Wikipedia using a m
 
 ## Repository Structure
 
-The repository follows the numbered execution order below.
+The repository now separates launchers, pipeline code, configs, and reports:
+
+```text
+configs/prompts/                  Prompt templates used by generation and attribution scripts
+pipeline/
+  embedding/                      Dataset embedding jobs
+  retrieval/                      In-language and cross-language retrieval scripts
+  filtering/                      Subset construction and dataset statistics
+  experiments/
+    single_passage/               XQUAD, MKQA, GMMLU single-passage runs
+    multi_passage/                MKQA and GMMLU multi-passage runs
+  evaluation/                     Performance checking scripts
+  attribution/                    MIRAGE attribution and aggregation
+analysis/                         Error analysis and correlation studies
+scripts/pipeline/                 Numbered shell launchers for the full workflow
+metadata/                         Intermediate overlap indices such as has-answer lists
+reports/                          Checked-in summary outputs and analysis artifacts
+```
+
+The numbered execution order is still preserved through the launchers in `scripts/pipeline/`.
 
 ### 0. Embedding
 
-- `0_embed_MKQA.sh`
-- `0_embed_GMMLU.sh`
+- `scripts/pipeline/0_embed_MKQA.sh`
+- `scripts/pipeline/0_embed_GMMLU.sh`
 
 ### 1. Retrieval
 
-- `1_retrieval_MKQA.sh`
-- `1_retrieval_GMMLU.sh`
+- `scripts/pipeline/1_retrieval_MKQA.sh`
+- `scripts/pipeline/1_retrieval_GMMLU.sh`
 
 ### 2. Filter subsets
 
-- `2_filter_subset_MKQA.sh`
-- `2_filter_subset_GMMLU.sh`
+- `scripts/pipeline/2_filter_subset_MKQA.sh`
+- `scripts/pipeline/2_filter_subset_GMMLU.sh`
 
 ### 3. Single-passage experiments
 
-- `3_XQUAD_open.sh`
-- `3_MKQA_open.sh`
-- `3_GMMLU_open.sh`
-- `3_GMMLU_choice.sh`
+- `scripts/pipeline/3_XQUAD_open.sh`
+- `scripts/pipeline/3_MKQA_open.sh`
+- `scripts/pipeline/3_GMMLU_open.sh`
+- `scripts/pipeline/3_GMMLU_choice.sh`
 
 Main entry points:
 
-- `XQUAD_open.py`
-- `MKQA_open.py`
-- `GMMLU_open.py`
-- `GMMLU_choice.py`
+- `pipeline/experiments/single_passage/XQUAD_open.py`
+- `pipeline/experiments/single_passage/MKQA_open.py`
+- `pipeline/experiments/single_passage/GMMLU_open.py`
+- `pipeline/experiments/single_passage/GMMLU_choice.py`
 
 ### 4. Performance checking
 
-- `4_check_performance.sh`
-- `check_XQUAD.py`
-- `check_MKQA.py`
-- `check_GMMLU_open.py`
-- `check_GMMLU_choice.py`
+- `scripts/pipeline/4_check_performance.sh`
+- `pipeline/evaluation/check_XQUAD.py`
+- `pipeline/evaluation/check_MKQA.py`
+- `pipeline/evaluation/check_GMMLU_open.py`
+- `pipeline/evaluation/check_GMMLU_choice.py`
 
 ### 5-6. MIRAGE attribution and counting
 
-- `5_attribute_XQUAD.sh`
-- `5_attribute_MKQA.sh`
-- `6_count_mirage.sh`
-- `attribute_XQUAD_open.py`
-- `attribute_MKQA_open.py`
-- `count_mirage.py`
+- `scripts/pipeline/5_attribute_XQUAD.sh`
+- `scripts/pipeline/5_attribute_MKQA.sh`
+- `scripts/pipeline/6_count_mirage.sh`
+- `pipeline/attribution/attribute_XQUAD_open.py`
+- `pipeline/attribution/attribute_MKQA_open.py`
+- `pipeline/attribution/count_mirage.py`
 
 ### 7-9, 12. Multi-passage experiments
 
-- `7_MKQA_open_multi.sh`
-- `7_GMMLU_choice_multi.sh`
-- `8_check_performance_multi.sh`
-- `9_attribute_MKQA_multi.sh`
-- `9_attribute_GMMLU_multi.sh`
-- `12_count_mirage_multi.sh`
+- `scripts/pipeline/7_MKQA_open_multi.sh`
+- `scripts/pipeline/7_GMMLU_choice_multi.sh`
+- `scripts/pipeline/8_check_performance_multi.sh`
+- `scripts/pipeline/9_attribute_MKQA_multi.sh`
+- `scripts/pipeline/9_attribute_GMMLU_multi.sh`
+- `scripts/pipeline/12_count_mirage_multi.sh`
 
 Main entry points:
 
-- `MKQA_open_multi.py`
-- `GMMLU_choice_multi.py`
-- `attribute_MKQA_open_multi.py`
-- `attribute_GMMLU_choice_multi.py`
-- `count_mirage_multi.py`
+- `pipeline/experiments/multi_passage/MKQA_open_multi.py`
+- `pipeline/experiments/multi_passage/GMMLU_choice_multi.py`
+- `pipeline/attribution/attribute_MKQA_open_multi.py`
+- `pipeline/attribution/attribute_GMMLU_choice_multi.py`
+- `pipeline/attribution/count_mirage_multi.py`
 
 ### 10-11. Additional evaluation
 
-- `10_LLM_eval.sh`
-- `11_LLM_eval_check.sh`
-- `check_LLM_eval.py`
+- `scripts/pipeline/10_LLM_eval.sh`
+- `scripts/pipeline/11_LLM_eval_check.sh`
+- `pipeline/evaluation/check_LLM_eval.py`
 
 ## Installation
 
@@ -166,38 +185,38 @@ conda activate RAGConsis
 
 ## Running the Pipeline
 
-The current repository is organized as a numbered pipeline. A simple way to reproduce the experiments is to run the scripts in order:
+The launchers in `scripts/pipeline/` still follow the numbered workflow. They resolve the repository root automatically, so you can call them from anywhere inside the repo.
 
 ```bash
-bash 0_embed_MKQA.sh
-bash 0_embed_GMMLU.sh
+bash scripts/pipeline/0_embed_MKQA.sh
+bash scripts/pipeline/0_embed_GMMLU.sh
 
-bash 1_retrieval_MKQA.sh
-bash 1_retrieval_GMMLU.sh
+bash scripts/pipeline/1_retrieval_MKQA.sh
+bash scripts/pipeline/1_retrieval_GMMLU.sh
 
-bash 2_filter_subset_MKQA.sh
-bash 2_filter_subset_GMMLU.sh
+bash scripts/pipeline/2_filter_subset_MKQA.sh
+bash scripts/pipeline/2_filter_subset_GMMLU.sh
 
-bash 3_XQUAD_open.sh
-bash 3_MKQA_open.sh
-bash 3_GMMLU_open.sh
-bash 3_GMMLU_choice.sh
+bash scripts/pipeline/3_XQUAD_open.sh
+bash scripts/pipeline/3_MKQA_open.sh
+bash scripts/pipeline/3_GMMLU_open.sh
+bash scripts/pipeline/3_GMMLU_choice.sh
 
-bash 4_check_performance.sh
+bash scripts/pipeline/4_check_performance.sh
 
-bash 5_attribute_XQUAD.sh
-bash 5_attribute_MKQA.sh
-bash 6_count_mirage.sh
+bash scripts/pipeline/5_attribute_XQUAD.sh
+bash scripts/pipeline/5_attribute_MKQA.sh
+bash scripts/pipeline/6_count_mirage.sh
 
-bash 7_MKQA_open_multi.sh
-bash 7_GMMLU_choice_multi.sh
-bash 8_check_performance_multi.sh
-bash 9_attribute_MKQA_multi.sh
-bash 9_attribute_GMMLU_multi.sh
-bash 12_count_mirage_multi.sh
+bash scripts/pipeline/7_MKQA_open_multi.sh
+bash scripts/pipeline/7_GMMLU_choice_multi.sh
+bash scripts/pipeline/8_check_performance_multi.sh
+bash scripts/pipeline/9_attribute_MKQA_multi.sh
+bash scripts/pipeline/9_attribute_GMMLU_multi.sh
+bash scripts/pipeline/12_count_mirage_multi.sh
 
-bash 10_LLM_eval.sh
-bash 11_LLM_eval_check.sh
+bash scripts/pipeline/10_LLM_eval.sh
+bash scripts/pipeline/11_LLM_eval_check.sh
 ```
 
 ## Practical Notes
@@ -205,6 +224,7 @@ bash 11_LLM_eval_check.sh
 - The shell scripts in the public repository are written for a **Slurm-based GPU setup** and use `sbatch`.
 - The scripts assume a Conda environment named **`RAGConsis`**.
 - You may need to adapt paths, logging directories, GPU resources, and job-scheduler settings to your own environment.
+- `scripts/pipeline/10_LLM_eval.sh` expects a local `sample_instances.py` helper in the repository root.
 
 For example, the provided experiment scripts submit jobs with `sbatch` and run Python commands via `conda run -n RAGConsis ...`.
 
@@ -248,7 +268,7 @@ Depending on the stage, the scripts may generate:
 - aggregated multi-passage analysis results
 - scheduler log files
 
-Please inspect the individual Python or shell scripts if you want to change output paths or filenames.
+Checked-in summaries now live under `reports/`, while large generated directories such as `results/`, `mirage/`, `log/`, and `log_attri/` are ignored via `.gitignore`.
 
 
 

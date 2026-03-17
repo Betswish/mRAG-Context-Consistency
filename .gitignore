@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.ipynb_checkpoints/
+.pytest_cache/
+
+data_inlang_*/
+data_cross_*/
+results/
+mirage/
+log/
+log_attri/
