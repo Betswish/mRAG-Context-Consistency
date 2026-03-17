@@ -9,7 +9,7 @@
 </div>
 
 > [!Note]
-> Our paper won the Best Paper Award at the [MRL 2025 workshop](https://sigtyp.github.io/ws2025-mrl.html)! 🎉
+> Our paper won the Best Paper Award at the [MRL'25 workshop (co-located with EMNLP 2025)](https://sigtyp.github.io/ws2025-mrl.html)! 🎉
 
 
 ## Overview
